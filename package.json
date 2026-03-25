@@ -5,6 +5,97 @@
   "description": "Worker pool for running AI models in the browser — WebGPU/WASM auto-detection, model lifecycle, streaming, cross-tab dedup",
   "license": "MIT",
   "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./adapters/transformers": {
+      "types": "./dist/adapters/transformers.d.ts",
+      "import": "./dist/adapters/transformers.js"
+    },
+    "./adapters/web-llm": {
+      "types": "./dist/adapters/web-llm.d.ts",
+      "import": "./dist/adapters/web-llm.js"
+    },
+    "./adapters/onnx": {
+      "types": "./dist/adapters/onnx.d.ts",
+      "import": "./dist/adapters/onnx.js"
+    },
+    "./worker": {
+      "import": "./dist/worker/dedicated.worker.js"
+    }
+  },
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "web-worker",
+    "worker-pool",
+    "webgpu",
+    "wasm",
+    "ai",
+    "inference",
+    "transformers",
+    "onnx",
+    "llm",
+    "browser",
+    "streaming",
+    "shared-worker",
+    "model-management",
+    "machine-learning"
+  ],
+  "scripts": {
+    "build": "tsup && npm run build:worker",
+    "build:worker": "rollup -c rollup.worker.config.ts --configPlugin typescript",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "lint": "eslint src tests",
+    "lint:fix": "eslint src tests --fix",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build && npm run typecheck && npm run test"
+  },
+  "peerDependencies": {
+    "@huggingface/transformers": ">=3.0.0",
+    "@mlc-ai/web-llm": ">=0.2.0",
+    "onnxruntime-web": ">=1.17.0"
+  },
+  "peerDependenciesMeta": {
+    "@huggingface/transformers": {
+      "optional": true
+    },
+    "@mlc-ai/web-llm": {
+      "optional": true
+    },
+    "onnxruntime-web": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "8.1.1",
+    "@rollup/plugin-typescript": "12.3.0",
+    "@types/node": "22.19.17",
+    "@typescript-eslint/eslint-plugin": "8.58.1",
+    "@typescript-eslint/parser": "8.58.1",
+    "@vitest/coverage-v8": "2.1.9",
+    "eslint": "10.2.0",
+    "eslint-config-prettier": "10.1.8",
+    "prettier": "3.8.2",
+    "rollup": "4.60.1",
+    "tslib": "2.8.1",
+    "tsup": "8.5.1",
+    "typescript": "5.9.3",
+    "vitest": "2.1.9"
+  },
   "engines": {
     "node": ">=18"
   }
