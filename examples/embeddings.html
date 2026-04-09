@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>inferis — Semantic Similarity</title>
+</head>
+<body>
+  <nav>
+    <a href="/" class="back">← All examples</a>
+    <span class="site-title">inferis</span>
+  </nav>
+
+  <div class="page">
+    <div class="page-header">
+      <h1>Semantic Similarity</h1>
+      <p class="desc">
+        Enter two texts and compare their meaning using vector embeddings.
+        The model runs inside a Web Worker — the page stays fully responsive during inference.
+        First run downloads ~90 MB; subsequent runs are instant.
+      </p>
+      <pre class="snippet">const model = await pool.load('feature-extraction', {
+  model: 'mixedbread-ai/mxbai-embed-xsmall-v1',
+});
+const [e1, e2] = await Promise.all([
+  model.run(textA, { pooling: 'mean', normalize: true }),
+  model.run(textB, { pooling: 'mean', normalize: true }),
+]);
+const similarity = cosine(e1.data, e2.data); // 0..1</pre>
+    </div>
+
+    <div id="progress-section" class="card" hidden>
+      <div class="card-title">Loading model</div>
+      <div class="progress-section">
+        <div class="progress-label">
+          <span id="progress-msg">Initializing…</span>
+          <span id="progress-file"></span>
+        </div>
+        <div class="progress-track">
+          <div id="progress-fill" class="progress-fill indeterminate"></div>
+        </div>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px; margin-top:14px;">
+        <span class="worker-pill">Running in Web Worker</span>
+        <span style="font-size:12px; color:var(--muted);">UI stays responsive</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div style="display:grid; gap:14px; margin-bottom:14px;">
+        <div>
+          <label>Text A</label>
+          <textarea id="text-a">cats and dogs are common household pets</textarea>
+        </div>
+        <div>
+          <label>Text B</label>
+          <textarea id="text-b">people often keep animals inside their homes</textarea>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button id="compare-btn">Compare</button>
+      </div>
+      <p id="status-text" class="status-text"></p>
+    </div>
+
+    <div id="result-card" class="card" hidden>
+      <div class="similarity-display">
+        <div id="sim-score" class="sim-score">—</div>
+        <div class="sim-track">
+          <div id="sim-fill" class="sim-fill"></div>
+        </div>
+        <div id="sim-label" class="sim-label"></div>
+        <div id="sim-hint" class="sim-hint"></div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/embeddings.ts"></script>
+</body>
+</html>

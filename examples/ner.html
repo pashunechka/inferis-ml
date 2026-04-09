@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>inferis — Named Entity Recognition</title>
+</head>
+<body>
+  <nav>
+    <a href="/" class="back">← All examples</a>
+    <span class="site-title">inferis</span>
+  </nav>
+
+  <div class="page">
+    <div class="page-header">
+      <h1>Named Entity Recognition</h1>
+      <p class="desc">
+        Detect people, organizations, and locations in text.
+        Uses BERT fine-tuned on CoNLL-2003 — groups B-/I- tokens into labeled spans.
+        Model runs in a Web Worker; first run downloads ~430 MB.
+      </p>
+      <pre class="snippet">const model = await pool.load('token-classification', {
+  model: 'Xenova/bert-base-NER',
+});
+const entities = await model.run(text);
+// [{ entity: 'B-PER', word: 'Steve', score: 0.99 }, …] — B/I tokens grouped by library</pre>
+    </div>
+
+    <div id="progress-section" class="card" hidden>
+      <div class="card-title">Loading model</div>
+      <div class="progress-section">
+        <div class="progress-label">
+          <span id="progress-msg">Initializing…</span>
+          <span id="progress-file"></span>
+        </div>
+        <div class="progress-track">
+          <div id="progress-fill" class="progress-fill indeterminate"></div>
+        </div>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px; margin-top:14px;">
+        <span class="worker-pill">Running in Web Worker</span>
+        <span style="font-size:12px; color:var(--muted);">UI stays responsive</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <label>Enter text to analyze</label>
+      <textarea id="text-input" rows="4">Apple was founded by Steve Jobs and Steve Wozniak in Cupertino, California. The company later acquired Beats Electronics and opened stores in London and Tokyo.</textarea>
+      <div class="btn-row">
+        <button id="analyze-btn">Analyze</button>
+      </div>
+      <p id="status-text" class="status-text"></p>
+    </div>
+
+    <div id="result-card" class="card" hidden>
+      <div class="card-title">Detected entities</div>
+      <div id="ner-output" class="ner-output"></div>
+      <div id="ner-legend" class="ner-legend"></div>
+      <div id="ner-meta" class="ner-meta"></div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/ner.ts"></script>
+</body>
+</html>

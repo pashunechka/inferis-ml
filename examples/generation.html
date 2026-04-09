@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>inferis — Text Generation</title>
+</head>
+<body>
+  <nav>
+    <a href="/" class="back">← All examples</a>
+    <span class="site-title">inferis</span>
+  </nav>
+
+  <div class="page">
+    <div class="page-header">
+      <h1>Streaming Text Generation</h1>
+      <p class="desc">
+        Tokens stream in real time from a GPT-2 model running in a Web Worker.
+        The page never freezes — inference happens off the main thread.
+        Hit Cancel at any time to stop generation mid-stream.
+        First run downloads ~160 MB.
+      </p>
+      <pre class="snippet">const model = await pool.load('text-generation', {
+  model: 'Xenova/gpt2',
+});
+const stream = model.stream(prompt, { max_new_tokens: 120 });
+for await (const token of readableToAsyncIter(stream)) {
+  output += token; // tokens arrive one by one
+}</pre>
+    </div>
+
+    <div id="progress-section" class="card" hidden>
+      <div class="card-title">Loading model</div>
+      <div class="progress-section">
+        <div class="progress-label">
+          <span id="progress-msg">Initializing…</span>
+          <span id="progress-file"></span>
+        </div>
+        <div class="progress-track">
+          <div id="progress-fill" class="progress-fill indeterminate"></div>
+        </div>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px; margin-top:14px;">
+        <span class="worker-pill">Running in Web Worker</span>
+        <span style="font-size:12px; color:var(--muted);">UI stays responsive</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <label>Prompt</label>
+      <input id="prompt-input" type="text" value="Once upon a time in a distant galaxy" />
+      <div class="btn-row">
+        <button id="generate-btn">Generate</button>
+        <button id="cancel-btn" class="secondary" hidden>Cancel</button>
+      </div>
+      <p id="status-text" class="status-text"></p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Output</div>
+      <pre id="gen-output" class="gen-output"><span style="color:var(--muted); font-size:13px;">Output will appear here…</span></pre>
+      <span id="cursor" class="cursor" hidden></span>
+    </div>
+  </div>
+
+  <script type="module" src="/src/generation.ts"></script>
+</body>
+</html>

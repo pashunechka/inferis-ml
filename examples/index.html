@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>inferis — Examples</title>
+  <link rel="stylesheet" href="/src/shared.css" />
+  <style>
+    body { max-width: 900px; padding: 60px 32px 80px; margin: 0 auto; }
+    .hero { margin-bottom: 56px; }
+    .hero h1 { font-size: 40px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 12px; }
+    .hero h1 span { color: #6366f1; }
+    .hero p { color: #9ca3af; font-size: 16px; max-width: 560px; line-height: 1.65; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 14px;
+    }
+    .example-card {
+      display: block;
+      background: #1a1d27;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 22px 24px;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.15s, transform 0.1s;
+    }
+    .example-card:hover {
+      border-color: rgba(99,102,241,0.5);
+      transform: translateY(-2px);
+    }
+    .card-num {
+      font-size: 11px;
+      font-weight: 600;
+      color: #6366f1;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+    }
+    .card-name { font-size: 17px; font-weight: 700; margin-bottom: 6px; letter-spacing: -0.01em; }
+    .card-desc { font-size: 13px; color: #9ca3af; line-height: 1.55; margin-bottom: 14px; }
+    .card-meta { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: rgba(99,102,241,0.1);
+      color: #a5b4fc;
+      border: 1px solid rgba(99,102,241,0.2);
+    }
+    .tag.green {
+      background: rgba(16,185,129,0.1);
+      color: #34d399;
+      border-color: rgba(16,185,129,0.2);
+    }
+    .badge-row { display: flex; gap: 10px; margin-bottom: 40px; flex-wrap: wrap; }
+    .badge {
+      font-size: 12px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: rgba(16,185,129,0.1);
+      color: #34d399;
+      border: 1px solid rgba(16,185,129,0.25);
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <h1><span>inferis</span> examples</h1>
+    <p>Run AI models directly in the browser — no server, no API keys, data never leaves your device. Each example loads a real model via Web Workers so the page stays responsive.</p>
+  </div>
+
+  <div class="badge-row">
+    <span class="badge">Web Workers</span>
+    <span class="badge">WebGPU / WASM</span>
+    <span class="badge">@huggingface/transformers</span>
+    <span class="badge">Zero server cost</span>
+  </div>
+
+  <div class="grid">
+    <a href="/capabilities.html" class="example-card">
+      <div class="card-num">Example 1</div>
+      <div class="card-name">Browser Capabilities</div>
+      <div class="card-desc">Instant hardware report — WebGPU, WASM SIMD, SharedWorker support. No model download required.</div>
+      <div class="card-meta">
+        <span class="tag green">No download</span>
+        <span class="tag">detectCapabilities()</span>
+      </div>
+    </a>
+
+    <a href="/embeddings.html" class="example-card">
+      <div class="card-num">Example 2</div>
+      <div class="card-name">Semantic Similarity</div>
+      <div class="card-desc">Compare two texts with vector embeddings. Uses cosine similarity to measure how related the meanings are.</div>
+      <div class="card-meta">
+        <span class="tag">feature-extraction</span>
+        <span class="tag">mxbai-embed-xsmall</span>
+      </div>
+    </a>
+
+    <a href="/sentiment.html" class="example-card">
+      <div class="card-num">Example 3</div>
+      <div class="card-name">Sentiment Analysis</div>
+      <div class="card-desc">Classify text as positive or negative with a confidence score. Classic NLP task in the browser.</div>
+      <div class="card-meta">
+        <span class="tag">text-classification</span>
+        <span class="tag">distilbert-sst2</span>
+      </div>
+    </a>
+
+    <a href="/generation.html" class="example-card">
+      <div class="card-num">Example 4</div>
+      <div class="card-name">Text Generation</div>
+      <div class="card-desc">Stream tokens in real time from a language model. Shows the streaming API and AbortController cancel.</div>
+      <div class="card-meta">
+        <span class="tag">text-generation</span>
+        <span class="tag">stream()</span>
+        <span class="tag">gpt2</span>
+      </div>
+    </a>
+
+    <a href="/vision.html" class="example-card">
+      <div class="card-num">Example 5</div>
+      <div class="card-name">Image Classification</div>
+      <div class="card-desc">Drop an image and get the top-5 predicted labels with confidence scores. ViT model, runs fully in-browser.</div>
+      <div class="card-meta">
+        <span class="tag">image-classification</span>
+        <span class="tag">vit-base-patch16</span>
+      </div>
+    </a>
+
+    <a href="/qa.html" class="example-card">
+      <div class="card-num">Example 6</div>
+      <div class="card-name">Question Answering</div>
+      <div class="card-desc">Provide a context paragraph and ask a question — the model extracts the exact answer span from the text.</div>
+      <div class="card-meta">
+        <span class="tag">question-answering</span>
+        <span class="tag">distilbert-distilsqa</span>
+      </div>
+    </a>
+
+    <a href="/ner.html" class="example-card">
+      <div class="card-num">Example 7</div>
+      <div class="card-name">Named Entity Recognition</div>
+      <div class="card-desc">Highlights persons, organizations, and locations inline in text using a token classification model.</div>
+      <div class="card-meta">
+        <span class="tag">token-classification</span>
+        <span class="tag">bert-base-NER</span>
+      </div>
+    </a>
+
+    <a href="/priority.html" class="example-card">
+      <div class="card-num">Example 8</div>
+      <div class="card-name">Priority Queue</div>
+      <div class="card-desc">Queue multiple inference requests simultaneously with different priorities — high-priority tasks run first.</div>
+      <div class="card-meta">
+        <span class="tag">priority</span>
+        <span class="tag">queue</span>
+        <span class="tag">sentiment-analysis</span>
+      </div>
+    </a>
+  </div>
+</body>
+</html>
