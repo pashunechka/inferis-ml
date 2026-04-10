@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>inferis — Image Classification</title>
+</head>
+<body>
+  <nav>
+    <a href="/" class="back">← All examples</a>
+    <span class="site-title">inferis</span>
+  </nav>
+
+  <div class="page">
+    <div class="page-header">
+      <h1>Image Classification</h1>
+      <p class="desc">
+        Drop any image and get the top-5 predicted labels with confidence scores.
+        Uses Vision Transformer (ViT) trained on ImageNet-1k — 1000 categories.
+        The model runs entirely in your browser; the image never leaves your device.
+        First run downloads ~350 MB.
+      </p>
+      <pre class="snippet">const pool = await createPool({
+  adapter: transformersAdapter(),
+  defaultDevice: 'webgpu', // or 'wasm'
+});
+const model = await pool.load('image-classification', {
+  model: 'Xenova/vit-base-patch16-224',
+});
+const result = await model.run(URL.createObjectURL(file), { topk: 5 });
+// [{ label: 'tabby cat', score: 0.94 }, …]</pre>
+    </div>
+
+    <div id="progress-section" class="card" hidden>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+        <div class="card-title" style="margin-bottom:0;">Loading model</div>
+        <span id="model-state-badge" class="model-state-badge"></span>
+      </div>
+      <div class="progress-section">
+        <div class="progress-label">
+          <span id="progress-msg">Initializing…</span>
+          <span id="progress-file"></span>
+        </div>
+        <div class="progress-track">
+          <div id="progress-fill" class="progress-fill indeterminate"></div>
+        </div>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px; margin-top:14px;">
+        <span class="worker-pill">Running in Web Worker</span>
+        <span id="active-device-pill" style="font-size:12px; color:var(--muted);"></span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;">
+        <span style="font-size:13px; color:var(--muted); font-weight:500;">Device</span>
+        <div class="device-toggle">
+          <button class="device-btn active" data-device="wasm">WASM</button>
+          <button class="device-btn" data-device="webgpu" id="webgpu-btn">WebGPU</button>
+        </div>
+        <span id="device-hint" style="font-size:12px; color:var(--muted);"></span>
+      </div>
+      <div id="dropzone" class="dropzone">
+        <input id="file-input" type="file" accept="image/*" />
+        <div class="dropzone-text">
+          <strong>Drop an image here</strong>
+          or click to browse
+        </div>
+        <img id="preview-img" class="preview-img" hidden alt="preview" />
+      </div>
+      <div class="btn-row" style="margin-top:14px;">
+        <button id="classify-btn" disabled>Classify</button>
+        <button id="unload-btn" hidden>Unload model</button>
+      </div>
+      <p id="status-text" class="status-text"></p>
+    </div>
+
+    <div id="result-card" class="card" hidden>
+      <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:12px;">
+        <div class="card-title" style="margin-bottom:0;">Top predictions</div>
+        <span id="inference-time" style="font-size:12px; color:var(--muted); font-variant-numeric:tabular-nums;"></span>
+      </div>
+      <ul id="result-list" class="result-list"></ul>
+    </div>
+  </div>
+
+  <script type="module" src="/src/vision.ts"></script>
+</body>
+</html>

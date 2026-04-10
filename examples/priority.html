@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>inferis — Priority Queue</title>
+  <style>
+    .pq-task {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 16px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--surface2);
+      list-style: none;
+      transition: border-color 0.2s;
+    }
+    .pq-task + .pq-task { margin-top: 8px; }
+
+    .pq-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      transition: background 0.2s;
+    }
+    .pq-dot--waiting  { background: var(--muted); }
+    .pq-dot--running  { background: var(--accent); animation: pulse 1s ease-in-out infinite; }
+    .pq-dot--done     { background: var(--success); }
+    .pq-dot--error    { background: var(--danger); }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.5; transform: scale(1.4); }
+    }
+
+    .pq-badge {
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      padding: 2px 8px;
+      border-radius: 4px;
+      border: 1px solid;
+      flex-shrink: 0;
+    }
+
+    .pq-sentence {
+      flex: 1;
+      font-size: 13.5px;
+      color: var(--text);
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .pq-status {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      flex-shrink: 0;
+      width: 54px;
+      text-align: right;
+    }
+    .pq-status--waiting { color: var(--muted); }
+    .pq-status--running { color: var(--accent); }
+    .pq-status--done    { color: var(--success); }
+    .pq-status--error   { color: var(--danger); }
+
+    .pq-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+      min-width: 160px;
+      justify-content: flex-end;
+    }
+
+    .pq-result {
+      font-size: 13px;
+    }
+
+    .pq-conf {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .pq-time {
+      font-family: var(--mono);
+      font-size: 11.5px;
+      color: var(--muted);
+    }
+
+    .legend {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .legend-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    .info-box {
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-border);
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+    .info-box strong { color: var(--text); }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/" class="back">← All examples</a>
+    <span class="site-title">inferis</span>
+  </nav>
+
+  <div class="page">
+    <div class="page-header">
+      <h1>Priority Queue</h1>
+      <p class="desc">
+        Queue multiple inference requests simultaneously with different priorities.
+        The scheduler drains <strong>high</strong> before <strong>normal</strong> before <strong>low</strong>,
+        so elapsed time reflects priority order — not queue order.
+        Uses DistilBERT SST-2 for sentiment classification.
+      </p>
+      <pre class="snippet">const result = await model.run(text, { priority: 'high' });
+// high tasks finish before normal/low, even when enqueued together</pre>
+    </div>
+
+    <div id="progress-section" class="card" hidden>
+      <div class="card-title">Loading model</div>
+      <div class="progress-section">
+        <div class="progress-label">
+          <span id="progress-msg">Initializing…</span>
+          <span id="progress-file"></span>
+        </div>
+        <div class="progress-track">
+          <div id="progress-fill" class="progress-fill indeterminate"></div>
+        </div>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px; margin-top:14px;">
+        <span class="worker-pill">Running in Web Worker</span>
+        <span style="font-size:12px; color:var(--muted);">UI stays responsive</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Tasks</div>
+
+      <div class="info-box">
+        All 5 requests are enqueued <strong>simultaneously</strong> when you click Run.
+        Watch the <strong>elapsed</strong> column — high-priority tasks complete first.
+      </div>
+
+      <div class="legend" style="margin-bottom:16px;">
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#f87171"></div>
+          <span>high</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#fbbf24"></div>
+          <span>normal</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#6366f1"></div>
+          <span>low</span>
+        </div>
+      </div>
+
+      <ul id="task-list"></ul>
+
+      <div class="btn-row" style="margin-top:18px;">
+        <button id="run-btn">Run all</button>
+        <button id="reset-btn" class="secondary">Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/priority.ts"></script>
+</body>
+</html>
