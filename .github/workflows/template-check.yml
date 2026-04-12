@@ -1,0 +1,38 @@
+name: Template Check
+
+on:
+  schedule:
+    - cron: '0 9 * * 1'
+  pull_request:
+    paths:
+      - 'packages/create-inferis-app/**'
+  workflow_dispatch:
+
+jobs:
+  test-templates:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        adapter: [transformers, web-llm]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Build CLI
+        working-directory: packages/create-inferis-app
+        run: |
+          npm install
+          npm run build
+
+      - name: Scaffold project
+        working-directory: packages/create-inferis-app
+        run: node dist/index.js /tmp/test-${{ matrix.adapter }} --adapter ${{ matrix.adapter }} --pm npm
+
+      - name: Install and build generated project
+        working-directory: /tmp/test-${{ matrix.adapter }}
+        run: |
+          npm install
+          npm run build

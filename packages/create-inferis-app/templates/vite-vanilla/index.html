@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>inferis-ml — AI Chat</title>
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <nav>
+    <span class="site-title">inferis-ml</span>
+    <span class="model-badge">{{MODEL_BADGE}}</span>
+  </nav>
+
+  <div class="page">
+    <div class="page-header">
+      <h1>AI Chat</h1>
+      <p class="desc">
+        Chat with a language model running entirely in your browser.
+        No server, no API keys — every token is generated on your device.
+      </p>
+    </div>
+
+    <div id="model-section" class="card">
+      <div class="card-title">Model</div>
+      <div id="load-prompt" style="display:flex; align-items:center; gap:14px;">
+        <button id="load-btn">Load Model</button>
+        <span style="font-size:13px; color:var(--muted);">{{MODEL_BADGE}}</span>
+      </div>
+      <div id="progress-area" hidden>
+        <div class="progress-section">
+          <div class="progress-label">
+            <span id="progress-msg">Initializing&hellip;</span>
+            <span id="progress-file"></span>
+          </div>
+          <div class="progress-track">
+            <div id="progress-fill" class="progress-fill indeterminate"></div>
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px; margin-top:14px;">
+          <span class="worker-pill">Running in Web Worker</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="chat-area">
+      <div id="messages" class="messages"></div>
+      <div class="input-bar">
+        <textarea id="chat-input" rows="1" placeholder="Type a message&hellip; (Enter to send, Shift+Enter for new line)"></textarea>
+        <div class="btn-group">
+          <button id="send-btn">Send</button>
+          <button id="cancel-btn" class="secondary" hidden>Cancel</button>
+          <button id="clear-btn" class="secondary">Clear</button>
+        </div>
+      </div>
+    </div>
+    <p id="status-text" class="status-text"></p>
+  </div>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

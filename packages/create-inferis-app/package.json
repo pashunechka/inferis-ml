@@ -1,0 +1,43 @@
+{
+  "name": "create-inferis-app",
+  "version": "1.0.0",
+  "description": "Scaffold an inferis-ml project in seconds",
+  "type": "module",
+  "bin": {
+    "create-inferis-app": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "templates"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch"
+  },
+  "dependencies": {
+    "kleur": "^4.1.5",
+    "prompts": "^2.4.2"
+  },
+  "devDependencies": {
+    "@types/prompts": "^2.4.9",
+    "tsup": "^8.0.0",
+    "typescript": "^5.5.0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pashunechka/inferis",
+    "directory": "packages/create-inferis-app"
+  },
+  "keywords": [
+    "inferis",
+    "ml",
+    "ai",
+    "scaffold",
+    "create",
+    "cli"
+  ]
+}
