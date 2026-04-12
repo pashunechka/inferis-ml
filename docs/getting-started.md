@@ -3,7 +3,7 @@
 ## Installation
 
 ```bash
-npm install inferis
+npm install inferis-ml
 ```
 
 Install the adapter you need:

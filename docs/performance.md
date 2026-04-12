@@ -15,7 +15,7 @@
 
 ### How It Works
 
-Before loading a model, inferis:
+Before loading a model, inferis-ml:
 1. Asks the adapter for `estimateMemoryMB(task, config)`
 2. Checks if `estimatedMB <= budget.availableMB`
 3. If not, runs `planEviction()` to find LRU models to unload
@@ -30,7 +30,7 @@ const pool = await createPool({
 
 ### Provide Accurate Estimates
 
-The default estimates per task type are conservative. If you know your model's size, provide it:
+The default estimate is 100 MB for all task types. If you know your model's size, provide it:
 
 ```typescript
 const model = await pool.load('feature-extraction', {

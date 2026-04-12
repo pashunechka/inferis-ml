@@ -397,18 +397,6 @@ module.exports = {
 };
 ```
 
-### Inline Worker (no bundler config needed)
-
-```typescript
-import { createPool } from 'inferis-ml';
-import { inlineWorkerUrl } from 'inferis-ml/worker-inline';
-
-const pool = await createPool({
-  adapter: transformersAdapter(),
-  workerUrl: inlineWorkerUrl(),  // creates a Blob URL
-});
-```
-
 ## Browser Support
 
 | Feature | Chrome | Firefox | Safari | Edge | iOS Safari | Android Chrome |

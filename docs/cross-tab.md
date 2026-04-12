@@ -4,7 +4,7 @@
 
 By default, each browser tab runs its own Web Worker and loads models independently. If a user opens your app in 3 tabs and each tab loads a 2GB LLM, they consume 6GB of RAM — likely triggering OOM.
 
-inferis solves this by sharing one worker pool across tabs.
+inferis-ml solves this by sharing one worker pool across tabs.
 
 ## Enabling Cross-Tab Mode
 
@@ -15,7 +15,7 @@ const pool = await createPool({
 });
 ```
 
-That's it. inferis auto-selects the best available tier.
+That's it. inferis-ml auto-selects the best available tier.
 
 ## Three Tiers
 

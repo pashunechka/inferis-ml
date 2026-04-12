@@ -18,7 +18,7 @@
 
 | Requirement | Coverage |
 |-------------|----------|
-| Web Workers + WASM (inferis core) | ~97% |
+| Web Workers + WASM (inferis-ml core) | ~97% |
 | + WASM SIMD | ~92% |
 | + WebGPU | ~70% |
 | + SharedWorker (cross-tab tier 1) | ~58% |
@@ -71,7 +71,7 @@ detectCapabilities()
 
 ## Polyfills
 
-inferis does not include polyfills. If you need to target older browsers:
+inferis-ml does not include polyfills. If you need to target older browsers:
 
 - **AbortController**: use `abortcontroller-polyfill` for Safari < 12.1
 - **BroadcastChannel**: use `broadcastchannel-polyfill` for older Safari

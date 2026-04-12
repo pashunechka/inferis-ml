@@ -231,7 +231,7 @@ try {
   await model.run(input);
 } catch (e) {
   if (e instanceof ModelNotReadyError) {
-    console.log('Model state:', e.modelId);
+    console.log('Model not ready:', e.modelId);
   } else if (e instanceof BudgetExceededError) {
     console.log('Need:', e.requestedMB, 'MB, budget:', e.budgetMB, 'MB');
   }
