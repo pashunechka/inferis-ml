@@ -10,7 +10,7 @@
   "dependencies": {
     "@huggingface/transformers": "^3.0.0",
     "@mlc-ai/web-llm": "^0.2.0",
-    "inferis": "file:.."
+    "inferis-ml": "file:.."
   },
   "devDependencies": {
     "vite": "^5.4.0"

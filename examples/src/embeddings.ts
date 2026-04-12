@@ -1,8 +1,8 @@
 import './shared.css';
 import inferisWorkerUrl from './inferis.worker.ts?worker&url';
-import { createPool } from 'inferis';
-import { transformersAdapter } from 'inferis/adapters/transformers';
-import type { ModelHandle } from 'inferis';
+import { createPool } from 'inferis-ml';
+import { transformersAdapter } from 'inferis-ml/adapters/transformers';
+import type { ModelHandle } from 'inferis-ml';
 
 const workerUrl = inferisWorkerUrl;
 
@@ -89,7 +89,7 @@ compareBtn.addEventListener('click', async () => {
 
     statusText.textContent = 'Computing embeddings…';
 
-    const pipeOpts = { normalize: true, pooling: 'mean' } as unknown as import('inferis').InferenceOptions;
+    const pipeOpts = { normalize: true, pooling: 'mean' } as unknown as import('inferis-ml').InferenceOptions;
     const resA = await model.run(a, pipeOpts);
     const resB = await model.run(b, pipeOpts);
 

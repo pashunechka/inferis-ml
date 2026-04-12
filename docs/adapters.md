@@ -54,7 +54,7 @@ interface LoadedModel {
 ## Minimal Example
 
 ```typescript
-import type { ModelAdapter, ModelAdapterFactory, LoadedModel } from 'inferis';
+import type { ModelAdapter, ModelAdapterFactory, LoadedModel } from 'inferis-ml';
 
 export function myAdapter(): ModelAdapterFactory {
   return {
@@ -177,7 +177,7 @@ This method is called on the main thread BEFORE spawning a load task, to check b
 ## Adapter for Custom ONNX Model
 
 ```typescript
-import type { ModelAdapter, ModelAdapterFactory } from 'inferis';
+import type { ModelAdapter, ModelAdapterFactory } from 'inferis-ml';
 
 export function customOnnxAdapter(modelUrl: string): ModelAdapterFactory {
   return {

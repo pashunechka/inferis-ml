@@ -89,7 +89,7 @@ stream(input: unknown, options?: InferenceOptions): ReadableStream<TOutput>
 for await (const chunk of model.stream(input)) { ... }
 
 // Collect all chunks:
-import { collectStreamText } from 'inferis';
+import { collectStreamText } from 'inferis-ml';
 const text = await collectStreamText(model.stream(input));
 ```
 
@@ -183,7 +183,7 @@ async function detectCapabilities(): Promise<CapabilityReport>
 Convert a `ReadableStream` to an `AsyncIterable`.
 
 ```typescript
-import { readableToAsyncIter } from 'inferis';
+import { readableToAsyncIter } from 'inferis-ml';
 for await (const chunk of readableToAsyncIter(stream)) { ... }
 ```
 
@@ -192,7 +192,7 @@ for await (const chunk of readableToAsyncIter(stream)) { ... }
 Collect all chunks into an array.
 
 ```typescript
-import { collectStream } from 'inferis';
+import { collectStream } from 'inferis-ml';
 const chunks = await collectStream(stream);
 ```
 
@@ -201,7 +201,7 @@ const chunks = await collectStream(stream);
 Collect all string chunks and join them.
 
 ```typescript
-import { collectStreamText } from 'inferis';
+import { collectStreamText } from 'inferis-ml';
 const text = await collectStreamText(stream);  // ReadableStream<string> → string
 ```
 
@@ -225,7 +225,7 @@ All errors extend `InferisError` which extends `Error`.
 | `InvalidStateTransitionError` | `INVALID_STATE_TRANSITION` | Invalid lifecycle transition |
 
 ```typescript
-import { ModelNotReadyError, BudgetExceededError } from 'inferis';
+import { ModelNotReadyError, BudgetExceededError } from 'inferis-ml';
 
 try {
   await model.run(input);

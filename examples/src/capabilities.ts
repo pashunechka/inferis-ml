@@ -1,6 +1,6 @@
 import './shared.css';
-import { detectCapabilities } from 'inferis';
-import type { CapabilityReport } from 'inferis';
+import { detectCapabilities } from 'inferis-ml';
+import type { CapabilityReport } from 'inferis-ml';
 
 const grid = document.getElementById('grid') as HTMLDivElement;
 const status = document.getElementById('status') as HTMLParagraphElement;

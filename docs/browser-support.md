@@ -80,7 +80,7 @@ inferis does not include polyfills. If you need to target older browsers:
 ## Feature Detection in Your App
 
 ```typescript
-import { detectCapabilities } from 'inferis';
+import { detectCapabilities } from 'inferis-ml';
 
 const caps = await detectCapabilities();
 

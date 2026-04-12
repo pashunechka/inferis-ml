@@ -33,6 +33,6 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    exclude: ['inferis'],
+    exclude: ['inferis-ml'],
   },
 });

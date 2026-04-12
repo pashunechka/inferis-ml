@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>inferis — Examples</title>
+  <title>inferis-ml — Examples</title>
   <link rel="stylesheet" href="./src/shared.css" />
   <style>
     body { max-width: 900px; padding: 60px 32px 80px; margin: 0 auto; }
@@ -67,9 +67,9 @@
 </head>
 <body>
   <div class="hero">
-    <h1><span>inferis</span> examples</h1>
+    <h1><span>inferis-ml</span> examples</h1>
     <p>Run AI models directly in the browser — no server, no API keys, data never leaves your device. Each example loads a real model via Web Workers so the page stays responsive.</p>
-    <a href="https://github.com/pashunechka/inferis" target="_blank" rel="noopener" style="display:inline-block;margin-top:16px;font-size:14px;color:#a5b4fc;text-decoration:none;border:1px solid rgba(99,102,241,0.3);padding:6px 16px;border-radius:8px;transition:border-color 0.15s">GitHub Repository &rarr;</a>
+    <a href="https://github.com/pashunechka/inferis-ml" target="_blank" rel="noopener" style="display:inline-block;margin-top:16px;font-size:14px;color:#a5b4fc;text-decoration:none;border:1px solid rgba(99,102,241,0.3);padding:6px 16px;border-radius:8px;transition:border-color 0.15s">GitHub Repository &rarr;</a>
   </div>
 
   <div class="badge-row">
@@ -96,7 +96,7 @@
         inferis uses this report to pick the fastest execution path automatically.
       </p>
       <pre class="snippet">
-import { detectCapabilities } from 'inferis';
+import { detectCapabilities } from 'inferis-ml';
 const caps = await detectCapabilities();
 // caps.webgpu.supported → true/false
 // caps.wasm.simd        → true/false

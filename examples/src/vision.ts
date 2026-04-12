@@ -1,8 +1,8 @@
 import './shared.css';
 import inferisWorkerUrl from './inferis.worker.ts?worker&url';
-import { createPool } from 'inferis';
-import { transformersAdapter } from 'inferis/adapters/transformers';
-import type { Device, ModelHandle } from 'inferis';
+import { createPool } from 'inferis-ml';
+import { transformersAdapter } from 'inferis-ml/adapters/transformers';
+import type { Device, ModelHandle } from 'inferis-ml';
 
 const workerUrl = inferisWorkerUrl;
 
@@ -39,7 +39,7 @@ function setStateBadge(state: string): void {
 }
 
 async function initDeviceToggle(): Promise<void> {
-  const { createPool: cp } = await import('inferis');
+  const { createPool: cp } = await import('inferis-ml');
   const tempPool = await cp({ adapter: transformersAdapter(), workerUrl });
   const caps = tempPool.capabilities();
   await tempPool.terminate();
@@ -175,7 +175,7 @@ classifyBtn.addEventListener('click', async () => {
 
     const imageUrl = currentObjectUrl;
     const t0 = performance.now();
-    const results = await model.run(imageUrl, { topk: 5 } as unknown as import('inferis').InferenceOptions);
+    const results = await model.run(imageUrl, { topk: 5 } as unknown as import('inferis-ml').InferenceOptions);
     const elapsed = performance.now() - t0;
     const list = Array.isArray(results) ? results : [results as { label: string; score: number }];
 

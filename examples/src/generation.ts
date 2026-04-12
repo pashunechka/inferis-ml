@@ -1,8 +1,8 @@
 import './shared.css';
 import inferisWorkerUrl from './inferis.worker.ts?worker&url';
-import { createPool, readableToAsyncIter } from 'inferis';
-import { transformersAdapter } from 'inferis/adapters/transformers';
-import type { ModelHandle } from 'inferis';
+import { createPool, readableToAsyncIter } from 'inferis-ml';
+import { transformersAdapter } from 'inferis-ml/adapters/transformers';
+import type { ModelHandle } from 'inferis-ml';
 
 const workerUrl = inferisWorkerUrl;
 
@@ -91,7 +91,7 @@ generateBtn.addEventListener('click', async () => {
       signal: abortController.signal,
       temperature: 0.9,
       top_k: 50,
-    } as unknown as import('inferis').InferenceOptions;
+    } as unknown as import('inferis-ml').InferenceOptions;
     const stream = model.stream(prompt, genOpts);
 
     for await (const token of readableToAsyncIter(stream)) {

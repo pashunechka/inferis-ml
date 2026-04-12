@@ -1,7 +1,7 @@
 import './shared.css';
 import webllmWorkerUrl from './webllm.worker.ts?worker&url';
-import { createPool, readableToAsyncIter } from 'inferis';
-import type { ModelHandle } from 'inferis';
+import { createPool, readableToAsyncIter } from 'inferis-ml';
+import type { ModelHandle } from 'inferis-ml';
 
 const workerUrl = webllmWorkerUrl;
 
@@ -83,7 +83,7 @@ async function loadModel(): Promise<void> {
   progressFile.textContent = '';
 
   const pool = await createPool({
-    adapter: (await import('inferis/adapters/web-llm')).webLlmAdapter(),
+    adapter: (await import('inferis-ml/adapters/web-llm')).webLlmAdapter(),
     workerUrl,
     maxWorkers: 1,
   });
@@ -136,7 +136,7 @@ async function sendMessage(): Promise<void> {
 
     const stream = model!.stream(
       { messages, temperature: 0.7, max_tokens: 512 },
-      { signal: abortController.signal } as unknown as import('inferis').InferenceOptions,
+      { signal: abortController.signal } as unknown as import('inferis-ml').InferenceOptions,
     );
 
     let fullResponse = '';

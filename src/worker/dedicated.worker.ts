@@ -24,8 +24,8 @@ let registeredFactory: ModelAdapterFactory | null = null;
  * @example
  * ```ts
  * // my-worker.ts
- * import { registerAdapterFactory } from 'inferis/worker-runtime';
- * import { transformersAdapter } from 'inferis/adapters/transformers';
+ * import { registerAdapterFactory } from 'inferis-ml/worker-runtime';
+ * import { transformersAdapter } from 'inferis-ml/adapters/transformers';
  * registerAdapterFactory(transformersAdapter());
  * ```
  */

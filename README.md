@@ -4,7 +4,7 @@ Worker pool for running AI models in the browser — WebGPU/WASM auto-detection,
 
 [![npm version](https://img.shields.io/npm/v/inferis)](https://npmjs.com/package/inferis)
 [![bundle size](https://img.shields.io/bundlephobia/minzip/inferis)](https://bundlephobia.com/package/inferis)
-[![coverage](https://img.shields.io/badge/coverage-93%25-green)](https://github.com/pashunechka/inferis)
+[![coverage](https://img.shields.io/badge/coverage-93%25-green)](https://github.com/pashunechka/inferis-ml)
 
 > **[Live Examples](https://pashunechka.github.io/inferis/)** — run AI models directly in your browser, no server needed.
 
@@ -77,8 +77,8 @@ npm install onnxruntime-web             # for onnxAdapter
 User types a query — find articles by meaning, not just keywords.
 
 ```typescript
-import { createPool } from 'inferis';
-import { transformersAdapter } from 'inferis/adapters/transformers';
+import { createPool } from 'inferis-ml';
+import { transformersAdapter } from 'inferis-ml/adapters/transformers';
 
 const pool = await createPool({ adapter: transformersAdapter() });
 
@@ -103,8 +103,8 @@ const query = await embedder.run(['buy a computer']);
 Answer appears word by word, like ChatGPT.
 
 ```typescript
-import { createPool } from 'inferis';
-import { webLlmAdapter } from 'inferis/adapters/web-llm';
+import { createPool } from 'inferis-ml';
+import { webLlmAdapter } from 'inferis-ml/adapters/web-llm';
 
 const pool = await createPool({
   adapter: webLlmAdapter(),
@@ -177,8 +177,8 @@ model.onStateChange((state) => {
 ### Embeddings
 
 ```typescript
-import { createPool } from 'inferis';
-import { transformersAdapter } from 'inferis/adapters/transformers';
+import { createPool } from 'inferis-ml';
+import { transformersAdapter } from 'inferis-ml/adapters/transformers';
 
 const pool = await createPool({
   adapter: transformersAdapter(),
@@ -199,8 +199,8 @@ await pool.terminate();
 ### LLM Streaming
 
 ```typescript
-import { createPool } from 'inferis';
-import { webLlmAdapter } from 'inferis/adapters/web-llm';
+import { createPool } from 'inferis-ml';
+import { webLlmAdapter } from 'inferis-ml/adapters/web-llm';
 
 const pool = await createPool({
   adapter: webLlmAdapter(),
@@ -259,7 +259,7 @@ const pool = await createPool({
 ### Capability Detection
 
 ```typescript
-import { detectCapabilities } from 'inferis';
+import { detectCapabilities } from 'inferis-ml';
 
 const caps = await detectCapabilities();
 
@@ -275,7 +275,7 @@ if (caps.webgpu.supported) {
 ## Custom Adapter
 
 ```typescript
-import type { ModelAdapter, ModelAdapterFactory } from 'inferis';
+import type { ModelAdapter, ModelAdapterFactory } from 'inferis-ml';
 
 export function myCustomAdapter(): ModelAdapterFactory {
   return {
@@ -326,7 +326,7 @@ export function myCustomAdapter(): ModelAdapterFactory {
 const pool = await createPool({
   adapter: transformersAdapter(),   // required
 
-  workerUrl: new URL('inferis/worker', import.meta.url),  // worker bundle URL
+  workerUrl: new URL('inferis-ml/worker', import.meta.url),  // worker bundle URL
   maxWorkers: navigator.hardwareConcurrency - 1,          // default: cores - 1
   maxMemoryMB: 2048,                                       // default: 2048
   defaultDevice: 'auto',                                   // 'webgpu' | 'wasm' | 'auto'
@@ -384,7 +384,7 @@ export default {
 // Usage
 const pool = await createPool({
   adapter: transformersAdapter(),
-  workerUrl: new URL('inferis/worker', import.meta.url),
+  workerUrl: new URL('inferis-ml/worker', import.meta.url),
 });
 ```
 
@@ -400,8 +400,8 @@ module.exports = {
 ### Inline Worker (no bundler config needed)
 
 ```typescript
-import { createPool } from 'inferis';
-import { inlineWorkerUrl } from 'inferis/worker-inline';
+import { createPool } from 'inferis-ml';
+import { inlineWorkerUrl } from 'inferis-ml/worker-inline';
 
 const pool = await createPool({
   adapter: transformersAdapter(),

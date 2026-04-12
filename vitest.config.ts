@@ -13,7 +13,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      'inferis': '/Users/p.fits/WebstormProjects/inferis/src/index.ts',
+      'inferis-ml': '/Users/p.fits/WebstormProjects/inferis/src/index.ts',
     },
   },
 });

@@ -899,8 +899,8 @@ export class WorkerPool {
  *
  * @example
  * ```ts
- * import { createPool } from 'inferis';
- * import { transformersAdapter } from 'inferis/adapters/transformers';
+ * import { createPool } from 'inferis-ml';
+ * import { transformersAdapter } from 'inferis-ml/adapters/transformers';
  *
  * const pool = await createPool({ adapter: transformersAdapter() });
  * ```

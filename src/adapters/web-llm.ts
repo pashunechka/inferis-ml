@@ -30,8 +30,8 @@ interface ChatInput {
  *
  * @example
  * ```ts
- * import { createPool } from 'inferis';
- * import { webLlmAdapter } from 'inferis/adapters/web-llm';
+ * import { createPool } from 'inferis-ml';
+ * import { webLlmAdapter } from 'inferis-ml/adapters/web-llm';
  *
  * const pool = await createPool({
  *   adapter: webLlmAdapter(),

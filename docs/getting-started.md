@@ -42,14 +42,14 @@ Use an importmap:
 <script type="importmap">
 {
   "imports": {
-    "inferis": "https://cdn.jsdelivr.net/npm/inferis/dist/index.js",
-    "inferis/adapters/transformers": "https://cdn.jsdelivr.net/npm/inferis/dist/adapters/transformers.js"
+    "inferis-ml": "https://cdn.jsdelivr.net/npm/inferis-ml/dist/index.js",
+    "inferis-ml/adapters/transformers": "https://cdn.jsdelivr.net/npm/inferis-ml/dist/adapters/transformers.js"
   }
 }
 </script>
 <script type="module">
-  import { createPool } from 'inferis';
-  import { transformersAdapter } from 'inferis/adapters/transformers';
+  import { createPool } from 'inferis-ml';
+  import { transformersAdapter } from 'inferis-ml/adapters/transformers';
   // ...
 </script>
 ```
@@ -57,8 +57,8 @@ Use an importmap:
 ## Step 1 — Create a pool
 
 ```ts
-import { createPool } from 'inferis';
-import { transformersAdapter } from 'inferis/adapters/transformers';
+import { createPool } from 'inferis-ml';
+import { transformersAdapter } from 'inferis-ml/adapters/transformers';
 
 const pool = await createPool({
   adapter: transformersAdapter(),
@@ -90,7 +90,7 @@ const embeddings = await model.run(['Hello world', 'Another sentence']);
 ## Step 4 — Stream tokens (LLM)
 
 ```ts
-import { webLlmAdapter } from 'inferis/adapters/web-llm';
+import { webLlmAdapter } from 'inferis-ml/adapters/web-llm';
 
 const llmPool = await createPool({
   adapter: webLlmAdapter(),
@@ -131,8 +131,8 @@ useEffect(() => {
 
 ```tsx
 import { useEffect, useRef, useState } from 'react';
-import { createPool, WorkerPool } from 'inferis';
-import { transformersAdapter } from 'inferis/adapters/transformers';
+import { createPool, WorkerPool } from 'inferis-ml';
+import { transformersAdapter } from 'inferis-ml/adapters/transformers';
 
 function EmbeddingDemo() {
   const poolRef = useRef<WorkerPool | null>(null);

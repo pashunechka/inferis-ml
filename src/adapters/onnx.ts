@@ -26,8 +26,8 @@ interface OnnxInput {
  *
  * @example
  * ```ts
- * import { createPool } from 'inferis';
- * import { onnxAdapter } from 'inferis/adapters/onnx';
+ * import { createPool } from 'inferis-ml';
+ * import { onnxAdapter } from 'inferis-ml/adapters/onnx';
  * import * as ort from 'onnxruntime-web';
  *
  * const pool = await createPool({ adapter: onnxAdapter() });

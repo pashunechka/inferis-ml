@@ -1,8 +1,8 @@
 import './shared.css';
 import inferisWorkerUrl from './inferis.worker.ts?worker&url';
-import { createPool } from 'inferis';
-import { transformersAdapter } from 'inferis/adapters/transformers';
-import type { ModelHandle } from 'inferis';
+import { createPool } from 'inferis-ml';
+import { transformersAdapter } from 'inferis-ml/adapters/transformers';
+import type { ModelHandle } from 'inferis-ml';
 
 const workerUrl = inferisWorkerUrl;
 
