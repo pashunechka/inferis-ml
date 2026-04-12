@@ -1,4 +1,5 @@
 import './shared.css';
+import inferisWorkerUrl from './inferis.worker.ts?worker&url';
 import { createPool } from 'inferis';
 import { transformersAdapter } from 'inferis/adapters/transformers';
 import type { ModelHandle } from 'inferis';
@@ -34,7 +35,7 @@ const PRIORITY_COLOR: Record<Priority, string> = {
   normal: '#fbbf24',
 };
 
-const workerUrl = new URL('./inferis.worker.ts', import.meta.url);
+const workerUrl = inferisWorkerUrl;
 
 const runBtn          = document.getElementById('run-btn')          as HTMLButtonElement;
 const resetBtn        = document.getElementById('reset-btn')        as HTMLButtonElement;

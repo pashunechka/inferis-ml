@@ -1,9 +1,10 @@
 import './shared.css';
+import inferisWorkerUrl from './inferis.worker.ts?worker&url';
 import { createPool, readableToAsyncIter } from 'inferis';
 import { transformersAdapter } from 'inferis/adapters/transformers';
 import type { ModelHandle } from 'inferis';
 
-const workerUrl = new URL('./inferis.worker.ts', import.meta.url);
+const workerUrl = inferisWorkerUrl;
 
 const promptInput = document.getElementById('prompt-input') as HTMLInputElement;
 const generateBtn = document.getElementById('generate-btn') as HTMLButtonElement;

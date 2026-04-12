@@ -1,9 +1,10 @@
 import './shared.css';
+import inferisWorkerUrl from './inferis.worker.ts?worker&url';
 import { createPool } from 'inferis';
 import { transformersAdapter } from 'inferis/adapters/transformers';
 import type { Device, ModelHandle } from 'inferis';
 
-const workerUrl = new URL('./inferis.worker.ts', import.meta.url);
+const workerUrl = inferisWorkerUrl;
 
 const dropzone = document.getElementById('dropzone') as HTMLDivElement;
 const fileInput = document.getElementById('file-input') as HTMLInputElement;

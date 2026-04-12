@@ -1,9 +1,10 @@
 import './shared.css';
+import inferisWorkerUrl from './inferis.worker.ts?worker&url';
 import { createPool } from 'inferis';
 import { transformersAdapter } from 'inferis/adapters/transformers';
 import type { ModelHandle } from 'inferis';
 
-const workerUrl = new URL('./inferis.worker.ts', import.meta.url);
+const workerUrl = inferisWorkerUrl;
 
 const analyzeBtn = document.getElementById('analyze-btn') as HTMLButtonElement;
 const nerLegend = document.getElementById('ner-legend') as HTMLDivElement;

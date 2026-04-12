@@ -1,8 +1,9 @@
 import './shared.css';
+import webllmWorkerUrl from './webllm.worker.ts?worker&url';
 import { createPool, readableToAsyncIter } from 'inferis';
 import type { ModelHandle } from 'inferis';
 
-const workerUrl = new URL('./webllm.worker.ts', import.meta.url);
+const workerUrl = webllmWorkerUrl;
 
 interface ChatMessage {
   role: 'system' | 'user' | 'assistant';
