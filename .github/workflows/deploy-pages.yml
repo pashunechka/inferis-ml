@@ -34,7 +34,7 @@ jobs:
       - name: Build examples
         working-directory: examples
         env:
-          VITE_BASE: /inferis/
+          VITE_BASE: /inferis-ml/
         run: npm run build
 
       - uses: actions/configure-pages@v5
