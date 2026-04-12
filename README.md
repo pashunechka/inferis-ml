@@ -1,36 +1,36 @@
-# inferis
+# inferis-ml
 
 Worker pool for running AI models in the browser — WebGPU/WASM auto-detection, model lifecycle management, token streaming, and cross-tab deduplication.
 
-[![npm version](https://img.shields.io/npm/v/inferis)](https://npmjs.com/package/inferis)
-[![bundle size](https://img.shields.io/bundlephobia/minzip/inferis)](https://bundlephobia.com/package/inferis)
+[![npm version](https://img.shields.io/npm/v/inferis-ml)](https://npmjs.com/package/inferis-ml)
+[![bundle size](https://img.shields.io/bundlephobia/minzip/inferis-ml)](https://bundlephobia.com/package/inferis-ml)
 [![coverage](https://img.shields.io/badge/coverage-93%25-green)](https://github.com/pashunechka/inferis-ml)
 
-> **[Live Examples](https://pashunechka.github.io/inferis/)** — run AI models directly in your browser, no server needed.
+> **[Live Examples](https://pashunechka.github.io/inferis-ml/)** — run AI models directly in your browser, no server needed.
 
 ## What is this
 
 You want to add smart search, speech recognition, or a chatbot to your website. Normally this requires a server — you send a request to the cloud, wait for a response, pay per call.
 
-**inferis** lets you run AI models directly in the user's browser. The model downloads once, then runs on the user's GPU/CPU. No server, no per-request cost, no data leaving the device.
+**inferis-ml** lets you run AI models directly in the user's browser. The model downloads once, then runs on the user's GPU/CPU. No server, no per-request cost, no data leaving the device.
 
-The catch: running a neural network in the browser is technically painful. Run it on the main thread and the page freezes. Move it to a Web Worker and you're writing `postMessage` boilerplate. inferis takes that pain away.
+The catch: running a neural network in the browser is technically painful. Run it on the main thread and the page freezes. Move it to a Web Worker and you're writing `postMessage` boilerplate. inferis-ml takes that pain away.
 
 ### Three problems it solves
 
 **1. Page freezes during inference**
 
-Without inferis, running a model on the main thread locks the UI. With inferis, work runs in a background worker — the page stays responsive.
+Without inferis-ml, running a model on the main thread locks the UI. With inferis-ml, work runs in a background worker — the page stays responsive.
 
 **2. 5 open tabs = 5 model copies in RAM**
 
-Without inferis: 5 tabs × 2 GB LLM = 10 GB RAM. Browser crashes.
+Without inferis-ml: 5 tabs × 2 GB LLM = 10 GB RAM. Browser crashes.
 With `crossTab: true`: all tabs share one worker, one model copy in memory.
 
 **3. WebGPU not available everywhere**
 
-Without inferis: you manually detect WebGPU and swap backends.
-With `defaultDevice: 'auto'`: inferis tries WebGPU, silently falls back to WASM if unavailable.
+Without inferis-ml: you manually detect WebGPU and swap backends.
+With `defaultDevice: 'auto'`: inferis-ml tries WebGPU, silently falls back to WASM if unavailable.
 
 ---
 
@@ -46,7 +46,7 @@ Existing browser AI runtimes (transformers.js, web-llm, onnxruntime-web) give yo
 - Evict models when memory budget is exceeded
 - Forward streaming tokens to the UI
 
-**inferis** handles all of this. You get a clean async API and focus on building the product.
+**inferis-ml** handles all of this. You get a clean async API and focus on building the product.
 
 ## Features
 
@@ -62,7 +62,7 @@ Existing browser AI runtimes (transformers.js, web-llm, onnxruntime-web) give yo
 ## Install
 
 ```bash
-npm install inferis
+npm install inferis-ml
 
 # Install the adapter you need (optional peer deps):
 npm install @huggingface/transformers   # for transformersAdapter
@@ -644,7 +644,7 @@ async load(task, config, device, onProgress) {
 | High-volume batch processing on a server | ✗ use server-side inference |
 | Real-time video/audio streaming analysis | ✗ latency too high for WASM |
 
-### inferis is a good fit when
+### inferis-ml is a good fit when
 
 - You want to avoid per-request API costs
 - Your users' data is sensitive and must not leave the device
@@ -652,7 +652,7 @@ async load(task, config, device, onProgress) {
 - Your users have modern hardware (GPU acceleration is a bonus, not a requirement)
 - You are building a single-page app where the model stays loaded across user interactions
 
-### inferis is not a good fit when
+### inferis-ml is not a good fit when
 
 - You need to process large datasets server-side
 - Your model is too large to download in a browser (>4 GB)
