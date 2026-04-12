@@ -1,6 +1,6 @@
 {
   "name": "inferis-ml",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "pashunechka",
   "description": "Worker pool for running AI models in the browser — WebGPU/WASM auto-detection, model lifecycle, streaming, cross-tab dedup",
   "license": "MIT",
