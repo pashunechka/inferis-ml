@@ -3,7 +3,7 @@
 Worker pool for running AI models in the browser — WebGPU/WASM auto-detection, model lifecycle management, token streaming, and cross-tab deduplication.
 
 [![npm version](https://img.shields.io/npm/v/inferis-ml)](https://npmjs.com/package/inferis-ml)
-[![bundle size](https://img.shields.io/bundlephobia/minzip/inferis-ml)](https://bundlephobia.com/package/inferis-ml)
+[![bundle size](https://img.shields.io/badge/minzip-6.7%20kB-blue)](https://npmjs.com/package/inferis-ml)
 [![coverage](https://img.shields.io/badge/coverage-93%25-green)](https://github.com/pashunechka/inferis-ml)
 
 > **[Live Examples](https://pashunechka.github.io/inferis-ml/)** — run AI models directly in your browser, no server needed.
