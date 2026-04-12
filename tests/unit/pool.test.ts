@@ -114,7 +114,7 @@ afterEach(() => {
   vi.restoreAllMocks();
 });
 
-describe('SSR guard', () => {
+describe('sSR guard', () => {
   it('throws EnvironmentError when Worker is undefined', async () => {
     vi.unstubAllGlobals();
     await expect(
