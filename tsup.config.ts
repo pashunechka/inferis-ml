@@ -7,6 +7,7 @@ export default defineConfig([
       'adapters/transformers': 'src/adapters/transformers.ts',
       'adapters/web-llm': 'src/adapters/web-llm.ts',
       'adapters/onnx': 'src/adapters/onnx.ts',
+      'worker/dedicated.worker': 'src/worker/dedicated.worker.ts',
     },
     format: ['esm', 'cjs'],
     dts: true,

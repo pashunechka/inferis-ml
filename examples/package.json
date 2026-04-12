@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@huggingface/transformers": "^3.0.0",
+    "@mlc-ai/web-llm": "^0.2.0",
     "inferis": "file:.."
   },
   "devDependencies": {
