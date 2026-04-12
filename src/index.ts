@@ -6,6 +6,7 @@ export { clearCapabilitiesCache, detectCapabilities } from './core/capabilities.
 export {
   BudgetExceededError,
   DeviceLostError,
+  EnvironmentError,
   InferenceError,
   InferisError,
   InvalidStateTransitionError,

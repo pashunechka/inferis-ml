@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { detectCapabilities } from '../../src/core/capabilities.js';
+import { EnvironmentError } from '../../src/core/errors.js';
 
 import { WorkerPool } from '../../src/core/pool.js';
 
@@ -111,6 +112,15 @@ beforeEach(() => {
 afterEach(() => {
   vi.unstubAllGlobals();
   vi.restoreAllMocks();
+});
+
+describe('SSR guard', () => {
+  it('throws EnvironmentError when Worker is undefined', async () => {
+    vi.unstubAllGlobals();
+    await expect(
+      WorkerPool.create({ adapter: { type: 'custom', factory: {} as never } }),
+    ).rejects.toThrow(EnvironmentError);
+  });
 });
 
 describe('workerPool.create', () => {

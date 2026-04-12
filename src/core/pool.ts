@@ -14,6 +14,7 @@ import { MemoryBudget } from './budget.js';
 import { detectCapabilities } from './capabilities.js';
 import {
   BudgetExceededError,
+  EnvironmentError,
   InferisError,
   ModelNotReadyError,
   TaskTimeoutError,
@@ -86,6 +87,13 @@ export class WorkerPool {
    * Spawns `maxWorkers` dedicated workers and detects browser capabilities.
    */
   static async create(config: PoolConfig): Promise<WorkerPool> {
+    if (typeof Worker === 'undefined') {
+      throw new EnvironmentError(
+        'inferis requires a browser environment. '
+        + 'Wrap initialization in a client-only hook (useEffect, onMounted) or use dynamic import with SSR disabled.',
+      );
+    }
+
     const caps = await detectCapabilities();
     const full: Required<PoolConfig> = {
       adapter: config.adapter,

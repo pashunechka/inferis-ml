@@ -117,6 +117,13 @@ export class DeviceLostError extends InferisError {
   }
 }
 
+export class EnvironmentError extends InferisError {
+  constructor(message: string) {
+    super(message, 'ENVIRONMENT_ERROR');
+    this.name = 'EnvironmentError';
+  }
+}
+
 export class InvalidStateTransitionError extends InferisError {
   constructor(from: string, to: string) {
     super(`Invalid state transition: ${from} -> ${to}`, 'INVALID_STATE_TRANSITION');
