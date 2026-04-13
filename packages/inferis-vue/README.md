@@ -1,5 +1,7 @@
 # inferis-vue
 
+[![npm version](https://img.shields.io/npm/v/inferis-vue.svg)](https://www.npmjs.com/package/inferis-vue)
+
 Vue 3 composables and plugin for [inferis-ml](https://www.npmjs.com/package/inferis-ml) -- run AI models directly in the browser with WebGPU/WASM.
 
 ## Install

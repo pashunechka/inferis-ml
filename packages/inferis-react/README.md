@@ -1,5 +1,7 @@
 # inferis-react
 
+[![npm version](https://img.shields.io/npm/v/inferis-react.svg)](https://www.npmjs.com/package/inferis-react)
+
 React hooks and providers for [inferis-ml](https://www.npmjs.com/package/inferis-ml) -- run AI models directly in the browser with WebGPU/WASM.
 
 ## Install

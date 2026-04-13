@@ -34,9 +34,10 @@
     "tsup": "^8.0.0"
   },
   "license": "MIT",
+  "homepage": "https://github.com/pashunechka/inferis-ml/tree/main/packages/inferis-svelte#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/pashunechka/inferis",
+    "url": "git+https://github.com/pashunechka/inferis-ml.git",
     "directory": "packages/inferis-svelte"
   },
   "keywords": [

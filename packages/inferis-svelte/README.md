@@ -1,5 +1,7 @@
 # inferis-svelte
 
+[![npm version](https://img.shields.io/npm/v/inferis-svelte.svg)](https://www.npmjs.com/package/inferis-svelte)
+
 Svelte stores and context for [inferis-ml](https://www.npmjs.com/package/inferis-ml) -- run AI models directly in the browser with WebGPU/WASM.
 
 ## Install

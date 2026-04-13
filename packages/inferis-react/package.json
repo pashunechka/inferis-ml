@@ -33,9 +33,10 @@
     "@types/react": "^19.1.2"
   },
   "license": "MIT",
+  "homepage": "https://github.com/pashunechka/inferis-ml/tree/main/packages/inferis-react#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/pashunechka/inferis",
+    "url": "git+https://github.com/pashunechka/inferis-ml.git",
     "directory": "packages/inferis-react"
   },
   "keywords": [
