@@ -1,0 +1,49 @@
+{
+  "name": "inferis-vue",
+  "version": "1.0.0",
+  "description": "Vue 3 composables and plugin for inferis-ml",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "vue": ">=3.3.0",
+    "inferis-ml": ">=1.0.0"
+  },
+  "devDependencies": {
+    "vue": "^3.5.0",
+    "inferis-ml": "file:../../",
+    "typescript": "^5.5.0",
+    "tsup": "^8.0.0"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pashunechka/inferis",
+    "directory": "packages/inferis-vue"
+  },
+  "keywords": [
+    "inferis",
+    "vue",
+    "composables",
+    "ml",
+    "ai",
+    "webgpu",
+    "wasm"
+  ]
+}
