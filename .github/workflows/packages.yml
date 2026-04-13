@@ -1,0 +1,54 @@
+name: Packages CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'packages/**'
+      - 'src/**'
+      - 'package.json'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'packages/**'
+      - 'src/**'
+      - 'package.json'
+
+jobs:
+  build-packages:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        package: [inferis-react, inferis-vue, inferis-svelte]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install core dependencies
+        run: npm ci
+
+      - name: Build core library
+        run: npm run build
+
+      - name: Install package dependencies
+        working-directory: packages/${{ matrix.package }}
+        run: npm install
+
+      - name: Typecheck
+        working-directory: packages/${{ matrix.package }}
+        run: npm run typecheck
+
+      - name: Build
+        working-directory: packages/${{ matrix.package }}
+        run: npm run build
+
+      - name: Verify dist output
+        working-directory: packages/${{ matrix.package }}
+        run: |
+          test -f dist/index.js || (echo "Missing ESM output" && exit 1)
+          test -f dist/index.cjs || (echo "Missing CJS output" && exit 1)
+          test -f dist/index.d.ts || (echo "Missing type declarations" && exit 1)
