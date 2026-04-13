@@ -1,0 +1,51 @@
+{
+  "name": "inferis-svelte",
+  "version": "1.0.0",
+  "description": "Svelte stores and context for inferis-ml",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "svelte": "./dist/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "svelte": "./dist/index.js",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "svelte": ">=4.0.0",
+    "inferis-ml": ">=1.0.0"
+  },
+  "devDependencies": {
+    "svelte": "^5.0.0",
+    "inferis-ml": "file:../../",
+    "typescript": "^5.5.0",
+    "tsup": "^8.0.0"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pashunechka/inferis",
+    "directory": "packages/inferis-svelte"
+  },
+  "keywords": [
+    "inferis",
+    "svelte",
+    "stores",
+    "ml",
+    "ai",
+    "webgpu",
+    "wasm"
+  ]
+}
