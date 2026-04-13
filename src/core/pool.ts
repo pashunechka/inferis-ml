@@ -894,7 +894,7 @@ export class WorkerPool {
     return defaultDevice;
   }
 
-  getMemoryBudget() {
+  getMemoryBudget(): { totalMB: number; allocatedMB: number; availableMB: number } {
     return {
       totalMB: this.budget.totalMB,
       allocatedMB: this.budget.allocatedMB,
