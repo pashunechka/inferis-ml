@@ -894,6 +894,14 @@ export class WorkerPool {
     return defaultDevice;
   }
 
+  getMemoryBudget() {
+    return {
+      totalMB: this.budget.totalMB,
+      allocatedMB: this.budget.allocatedMB,
+      availableMB: this.budget.availableMB,
+    };
+  }
+
   /** @internal */
   get _registry(): ModelRegistry { return this.registry; }
   /** @internal */

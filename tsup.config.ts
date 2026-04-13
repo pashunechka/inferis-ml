@@ -8,6 +8,7 @@ export default defineConfig([
       'adapters/web-llm': 'src/adapters/web-llm.ts',
       'adapters/onnx': 'src/adapters/onnx.ts',
       'worker/dedicated.worker': 'src/worker/dedicated.worker.ts',
+      'rag/index': 'src/rag/index.ts',
     },
     format: ['esm', 'cjs'],
     dts: true,

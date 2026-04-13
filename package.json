@@ -9,6 +9,11 @@
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "homepage": "https://pashunechka.github.io/inferis-ml",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pashunechka/inferis-ml"
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",

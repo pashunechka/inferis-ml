@@ -151,6 +151,11 @@ export interface WorkerPoolInterface {
   capabilities: () => CapabilityReport;
 
   /**
+   * Return current memory budget snapshot.
+   */
+  getMemoryBudget: () => { totalMB: number; allocatedMB: number; availableMB: number } | null;
+
+  /**
    * Gracefully terminate all workers and dispose all models.
    */
   terminate: () => Promise<void>;

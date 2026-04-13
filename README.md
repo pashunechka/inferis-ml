@@ -244,6 +244,29 @@ export function myCustomAdapter(): ModelAdapterFactory {
 }
 ```
 
+## Framework Integrations
+
+Official bindings with idiomatic APIs for popular frameworks:
+
+| Package | Install | Docs |
+|---------|---------|------|
+| [inferis-react](https://www.npmjs.com/package/inferis-react) | `npm i inferis-react` | [README](packages/inferis-react/README.md) |
+| [inferis-vue](https://www.npmjs.com/package/inferis-vue) | `npm i inferis-vue` | [README](packages/inferis-vue/README.md) |
+| [inferis-svelte](https://www.npmjs.com/package/inferis-svelte) | `npm i inferis-svelte` | [README](packages/inferis-svelte/README.md) |
+
+Each package provides context/provider setup, model lifecycle management, streaming, capability detection, and memory monitoring -- all wired into the framework's reactivity system.
+
+```tsx
+// React
+const { text, start } = useStream(model);
+
+// Vue
+const { text, start } = useStream(model);
+
+// Svelte
+const { text, start } = useStream(model);  // $text in template
+```
+
 ## Bundler & Framework Setup
 
 inferis-ml is browser-only. In SSR frameworks, ensure initialization runs only on the client.
